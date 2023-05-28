@@ -1,12 +1,12 @@
 pipeline {
   agent any
   tools { 
-        maven 'Maven_3_5_2'  
+        maven 'manven-3.5.2'  
     }
    stages{
     stage('CompileandRunSonarAnalysis') {
             steps {	
-		sh 'mvn clean verify sonar:sonar -Dsonar.projectKey=asgbuggywebapp -Dsonar.organization=asgbuggywebapp -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=932558e169d66a8f1d1adf470b908a46156f5844'
+		sh 'mvn clean verify sonar:sonar -Dsonar.projectKey=asecuritygroupkey -Dsonar.organization=asecuritygroupkey -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=7a8755db3115d05c0c082731c262b45f6f7c5e89'
 			}
     }
 
@@ -31,7 +31,7 @@ pipeline {
 	stage('Push') {
             steps {
                 script{
-                    docker.withRegistry('https://145988340565.dkr.ecr.us-west-2.amazonaws.com', 'ecr:us-west-2:aws-credentials') {
+                    docker.withRegistry('https://309520210477.dkr.ecr.us-east-2.amazonaws.com/bram', 'ecr:us-east-2:aws-credentials') {
                     app.push("latest")
                     }
                 }
